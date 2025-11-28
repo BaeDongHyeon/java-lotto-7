@@ -6,6 +6,7 @@ import java.util.List;
 public class LottoPaper {
 
     private final List<Integer> numbers = new ArrayList<>();
+    private int bonusNumber = 0;
 
     public void writeBasicNumbers(String basicNumbers) {
         basicValidate(basicNumbers);
@@ -54,7 +55,7 @@ public class LottoPaper {
                 throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이의 숫자만 가능합니다.");
             }
 
-            numbers.add(Integer.parseInt(bonusNumber));
+            this.bonusNumber = Integer.parseInt(bonusNumber);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자만 입력할 수 있습니다.");
         }
@@ -71,6 +72,6 @@ public class LottoPaper {
     }
 
     public boolean isMatchedBonusNumber(Lotto lotto) {
-        return lotto.getNumbers().contains(numbers.getLast());
+        return lotto.getNumbers().contains(bonusNumber);
     }
 }
